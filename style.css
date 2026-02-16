@@ -782,3 +782,69 @@
     }
   }
 }
+
+@layer cta {
+  .cta {
+    background-color: var(--c-dark-navy);
+    background-image: url("/assets/patterns/semi-circles.svg");
+    background-repeat: no-repeat;
+    background-position: 75% 100%;
+    background-size: 320%;
+    color: var(--c-white);
+    justify-items: center;
+    text-align: center;
+
+    @media (width >= calc(700 / 16 * 1rem)) {
+      background-position: 50% 110%;
+      background-size: 160%;
+    }
+
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      justify-items: stretch;
+      text-align: start;
+      background-position: 170% 110%;
+      background-size: 82%;
+    }
+
+    .cta-content {
+      display: grid;
+      row-gap: 40px;
+      padding-block: 88px;
+
+      @media (width >= calc(700 / 16 * 1rem)) {
+        padding-block: 62px;
+      }
+
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        padding-block: 100px;
+        align-items: center;
+      }
+    }
+
+    .cta-title {
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        grid-row: 1 / span 1;
+        max-width: calc(415 / 16 * 1rem);
+      }
+    }
+
+    .cta-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      gap: 16px;
+
+      :first-child {
+        text-align: end;
+      }
+
+      :last-child {
+        text-align: start;
+      }
+
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        grid-row: 1 / span 1;
+        justify-self: end;
+      }
+    }
+  }
+}
