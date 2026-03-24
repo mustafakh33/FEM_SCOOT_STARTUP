@@ -6,21 +6,48 @@ const topNavMenuContent = document.querySelector('.topnav__menu-content');
 const main = document.querySelector('main');
 const body = document.querySelector('body');
 
+function safeEnableBodyScroll() {
+  try {
+    if (typeof bodyScrollLockUpgrade !== 'undefined' && bodyScrollLockUpgrade.enableBodyScroll) {
+      bodyScrollLockUpgrade.enableBodyScroll(body);
+    }
+  } catch (e) {
+    /* ignore */
+  }
+}
+
+function safeDisableBodyScroll() {
+  try {
+    if (typeof bodyScrollLockUpgrade !== 'undefined' && bodyScrollLockUpgrade.disableBodyScroll) {
+      bodyScrollLockUpgrade.disableBodyScroll(body);
+    }
+  } catch (e) {
+    /* ignore */
+  }
+}
+
 function openMobileMenu() {
+  if (!btnOpen || !topNavMenu || !topNavMenuContent) return;
   btnOpen.setAttribute('aria-expanded', 'true');
   topNavMenu.removeAttribute('inert');
   topNavMenuContent.removeAttribute('style');
-  main.setAttribute('inert', '');
-  bodyScrollLockUpgrade.disableBodyScroll(body);
-  btnClose.focus();
+  if (main) main.setAttribute('inert', '');
+  safeDisableBodyScroll();
+  if (btnClose) btnClose.focus();
 }
 
 function closeMobileMenu() {
-  console.log('close mobile menu');
+  if (!btnOpen || !topNavMenu || !topNavMenuContent) return;
   btnOpen.setAttribute('aria-expanded', 'false');
-  topNavMenu.setAttribute('inert', '');
-  main.removeAttribute('inert');
-  bodyScrollLockUpgrade.enableBodyScroll(body);
+  if (main) main.removeAttribute('inert');
+  safeEnableBodyScroll();
+
+  if (media.matches) {
+    topNavMenu.setAttribute('inert', '');
+  } else {
+    topNavMenu.removeAttribute('inert');
+  }
+
   btnOpen.focus();
 
   setTimeout(() => {
@@ -29,14 +56,12 @@ function closeMobileMenu() {
 }
 
 function setupTopNav(e) {
+  if (!topNavMenu || !topNavMenuContent) return;
+
   if (e.matches) {
-    // is mobile
-    console.log('is mobile');
     topNavMenu.setAttribute('inert', '');
     topNavMenuContent.style.transition = 'none';
   } else {
-    // is tablet/desktop
-    console.log('is desktop');
     closeMobileMenu();
     topNavMenu.removeAttribute('inert');
   }
@@ -44,8 +69,8 @@ function setupTopNav(e) {
 
 setupTopNav(media);
 
-btnOpen.addEventListener('click', openMobileMenu);
-btnClose.addEventListener('click', closeMobileMenu);
+if (btnOpen) btnOpen.addEventListener('click', openMobileMenu);
+if (btnClose) btnClose.addEventListener('click', closeMobileMenu);
 
 media.addEventListener('change', function (e) {
   setupTopNav(e);
