@@ -92,6 +92,7 @@
     font-size: var(--fs-15);
     letter-spacing: 0;
     line-height: 1.66;
+    overflow-x: hidden;
   }
 
   a {
