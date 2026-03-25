@@ -1,0 +1,140 @@
+@layer fonts {
+  /* space-mono-700 - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Space Mono";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/assets/fonts/space-mono-v17-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+  /* lexend-deca-regular - latin */
+  @font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Lexend Deca";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/assets/fonts/lexend-deca-v24-latin-regular.woff2")
+      format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  }
+
+  :root {
+    --ff-mono: "Space Mono", "Courier New", Courier, monospace;
+    --fs-56: calc(56/16 * 1rem);
+    --fs-48: calc(48/16 * 1rem);
+    --fs-40: calc(40/16 * 1rem);
+    --fs-32: calc(32/16 * 1rem);
+    --fs-24: calc(24/16 * 1rem);
+    --fs-20: calc(20/16 * 1rem);
+    --fs-15: calc(15/16 * 1rem);
+  }
+
+  h1 {
+    font-size: var(--fs-40);
+    letter-spacing: -1.79px;
+    @media (width >= calc(700 / 16*1rem)) {
+      font-size: var(--fs-56);
+      letter-spacing: -2.5px;
+    }
+  }
+
+  h2 {
+    font-size: var(--fs-32);
+    letter-spacing: -1.43px;
+    @media (width >= calc(700 / 16*1rem)) {
+      font-size: var(--fs-48);
+      letter-spacing: -2.14px;
+    }
+  }
+
+  h3 {
+    font-size: var(--fs-20);
+    letter-spacing: -0.89px;
+    @media (width >= calc(700 / 16*1rem)) {
+      font-size: var(--fs-24);
+      letter-spacing: -1.07px;
+    }
+  }
+
+  h4 {
+    font-size: var(--fs-24);
+    letter-spacing: -1.07px;
+  }
+}
+
+@layer colors {
+  :root {
+    --c-white: hsl(0, 0%, 100%);
+    --c-yellow: hsl(40, 97%, 58%);
+    --c-xdark-navy: hsl(215, 14%, 23%);
+    --c-dark-navy: hsl(216, 17%, 35%);
+    --c-dim-grey: hsl(217, 12%, 62%);
+    --c-light-grey: hsl(212, 41%, 93%);
+    --c-snow: hsl(214, 37%, 96%);
+    --c-light-yellow: hsl(39, 100%, 94%);
+    --c-black-overlay: hsla(0, 0%, 0%, 0.75);
+  }
+}
+
+@layer global {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: "Lexend Deca", sans-serif;
+    font-size: var(--fs-15);
+    letter-spacing: 0;
+    line-height: 1.66;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  img,
+  picture,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Space Mono", monospace;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  p {
+    line-height: 1.6;
+    text-wrap: balance;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}

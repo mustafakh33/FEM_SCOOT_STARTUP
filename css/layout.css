@@ -1,0 +1,43 @@
+@layer layout {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr calc(100% - 64px) 1fr;
+
+    @media (width >= calc(700 / 16 * 1rem)) {
+      grid-template-columns:
+        1fr min(calc(100% - 80px), calc(1110 / 16 * 1rem))
+        1fr;
+    }
+
+    &.fb-col {
+      display: grid;
+      grid-template-columns: 1fr repeat(3, calc(calc(100% - 64px) / 3)) 1fr;
+
+      @media (width >= calc(700 / 16 * 1rem)) {
+        grid-template-columns: 1fr repeat(6, calc(calc(100% - 80px) / 6)) 1fr;
+      }
+
+      @media (width >= calc(1000 / 16 * 1rem)) {
+        grid-template-columns:
+          1fr repeat(12, calc(calc(1110 / 16 * 1rem) / 12))
+          1fr;
+      }
+    }
+
+    &.small {
+      @media (width >= calc(700 / 16 * 1rem)) and (width < calc(1000 / 16 * 1rem)) {
+        grid-template-columns:
+          1fr min(calc(100% - 200px), calc(1110 / 16 * 1rem))
+          1fr;
+      }
+    }
+
+    > * {
+      grid-column: 2;
+    }
+
+    > .fullbleed {
+      grid-column: 1 / -1;
+    }
+  }
+}
