@@ -1,6 +1,171 @@
-/* ==========================================================================
-   Location Page Styles
-   ==========================================================================
-   Placeholder for location-page-specific styles.
-   Add any styles unique to the location page here.
-   ========================================================================== */
+@layer locations-map {
+  .location-map {
+    padding-block: 64px 120px;
+
+    @media (width >= calc(700 / 16 * 1rem)) {
+      padding-block: 80px 120px;
+    }
+
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      padding-block: 120px;
+    }
+  }
+
+  .location-map-container {
+    position: relative;
+  }
+
+  .location-map-picture {
+    display: block;
+  }
+
+  .location-map-img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* ── Map labels (hidden on mobile, shown on tablet+) ── */
+  .location-map-label {
+    display: none;
+
+    @media (width >= calc(700 / 16 * 1rem)) {
+      display: block;
+      position: absolute;
+      background: var(--c-yellow);
+      padding: 10px 20px;
+      font-family: var(--ff-mono);
+      font-weight: 700;
+      font-size: var(--fs-15);
+      color: var(--c-dark-navy);
+      white-space: nowrap;
+      z-index: 2;
+
+      /* Triangle pointer */
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -8px;
+        translate: -50% 0;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid var(--c-yellow);
+      }
+    }
+  }
+
+  /* Tablet positions */
+  .location-map-label--newyork {
+    @media (width >= calc(700 / 16 * 1rem)) {
+      top: 38%;
+      left: 12%;
+    }
+
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      top: 36%;
+      left: 14%;
+    }
+  }
+
+  .location-map-label--london {
+    @media (width >= calc(700 / 16 * 1rem)) {
+      top: 18%;
+      left: 38%;
+    }
+
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      top: 14%;
+      left: 38%;
+    }
+  }
+
+  .location-map-label--yokohama {
+    @media (width >= calc(700 / 16 * 1rem)) {
+      top: 28%;
+      right: 6%;
+    }
+
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      top: 24%;
+      right: 6%;
+    }
+  }
+
+  .location-map-label--jakarta {
+    @media (width >= calc(700 / 16 * 1rem)) {
+      top: 58%;
+      right: 14%;
+    }
+
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      top: 56%;
+      right: 18%;
+    }
+  }
+
+  /* ── Mobile city list (visible on mobile only) ── */
+  .location-map-cities {
+    display: grid;
+    gap: 12px;
+    margin-block-start: 48px;
+
+    @media (width >= calc(700 / 16 * 1rem)) {
+      display: none;
+    }
+  }
+
+  .location-map-city {
+    background: var(--c-light-yellow);
+    padding: 16px 24px;
+    font-family: var(--ff-mono);
+    font-weight: 700;
+    font-size: var(--fs-24);
+    letter-spacing: -1.07px;
+    color: var(--c-dark-navy);
+    text-align: center;
+    text-transform: capitalize;
+  }
+}
+
+@layer locations-city {
+  .location-city {
+    padding-block-end: 120px;
+  }
+
+  .location-city-content {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 24px;
+
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      grid-template-columns: minmax(0, calc(350 / 16 * 1rem)) minmax(0, calc(440 / 16 * 1rem)) auto;
+      align-items: center;
+      text-align: start;
+      justify-items: start;
+      gap: 30px;
+    }
+  }
+
+  .location-city-title {
+    color: var(--c-dark-navy);
+    font-size: var(--fs-32);
+
+    @media (width >= calc(700 / 16 * 1rem)) {
+      font-size: var(--fs-48);
+    }
+  }
+
+  .location-city-descr {
+    color: var(--c-dim-grey);
+    max-width: 55ch;
+  }
+
+  .location-city-content .button {
+    @media (width >= calc(1000 / 16 * 1rem)) {
+      justify-self: end;
+    }
+  }
+}
