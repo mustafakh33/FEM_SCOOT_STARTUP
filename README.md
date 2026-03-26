@@ -217,6 +217,3 @@ Designed and built with ❤️ using a custom Figma design.
 
 ---
 
-## 📄 License
-
-This project is for educational purposes. Design assets are © Frontend Mentor.
